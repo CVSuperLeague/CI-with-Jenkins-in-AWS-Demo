@@ -2,27 +2,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp
+  name: myapp2
 spec:
   replicas: 2
   selector:
    matchLabels:
-    app: myapp
+    app: myapp2
   template:
     metadata:
       labels:
-        app: myapp
+        app: myapp2
     spec:
       containers:
-      - name: myapp
-        image: gcr.io/devops-cv-tcssuper/cvdocker7/docker4k8s:tagversion
+      - name: myapp2
+        image: gcr.io/devops-cv-tcssuper/gcr-cvdevops/devops:tagversion
         ports:
         - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: myapp
+  name: myapp2
 spec:
   type: LoadBalancer
   ports:
@@ -30,4 +30,4 @@ spec:
     port: 80
     targetPort: 8080
   selector:
-    app: myapp
+    app: myapp2
