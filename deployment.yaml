@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: cvdocker7/docker4k8s:tagversion
+        image: gcr.io/devops-cv-tcssuper/cvdocker7/docker4k8s:tagversion
         ports:
         - containerPort: 8080
 ---
