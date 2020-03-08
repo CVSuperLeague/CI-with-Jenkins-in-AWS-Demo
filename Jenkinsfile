@@ -27,14 +27,14 @@ pipeline {
         stage("Build gcr image") {
             steps {
                 script {
-                    myimage = docker.build("gcr.io/devops-cv-tcssuper/cvdocker7/docker4k8s:${env.BUILD_ID}")
+                    myimage = docker.build("gcr.io/devops-cv-tcssuper/gcr-cvdevops/devops:${env.BUILD_ID}")
                 }
             }
         }
         stage("Push image") {
             steps {
                 script {
-                    docker.withRegistry('https://gcr.io', 'gcr4k8s') {
+                    docker.withRegistry('https://gcr.io', 'gcr:gcr_credentials') {
                             myimage.push("${env.BUILD_ID}")
                     }
                 }
