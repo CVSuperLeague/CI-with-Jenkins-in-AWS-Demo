@@ -24,18 +24,18 @@ pipeline {
 			   sh 'mvn test'
             }
         }
-        stage("Build docker image") {
+        stage("Build gcr image") {
             steps {
                 script {
-                    myapp = docker.build("cvdocker7/docker4k8s:${env.BUILD_ID}")
+                    myimage = docker.build("gcr.io/devops-cv-tcssuper/cvdocker7/docker4k8s:${env.BUILD_ID}")
                 }
             }
         }
         stage("Push image") {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-                            myapp.push("${env.BUILD_ID}")
+                    docker.withRegistry('https://gcr.io', 'gcr:gcr4k8s') {
+                            myimage.push("${env.BUILD_ID}")
                     }
                 }
             }
